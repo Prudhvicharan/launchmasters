@@ -54,11 +54,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   // Get user's college stats for badges
   const { data: collegeList } = useQuery({
     queryKey: ["userCollegeList", user?.id],
-<<<<<<< HEAD
-    queryFn: () => getUserCollegeList(user?.id!),
-=======
     queryFn: () => getUserCollegeList(user?.id ?? ""),
->>>>>>> main
     enabled: !!user?.id,
   });
 
