@@ -7,12 +7,10 @@ import {
   MapPinIcon,
   GlobeAltIcon,
   CurrencyDollarIcon,
-  UsersIcon,
   PlusIcon,
   CheckIcon,
   CalendarIcon,
   ChartBarIcon,
-  BuildingOfficeIcon,
 } from "@heroicons/react/24/outline";
 import { getCollegeById as getCollegeFromAPI } from "../../services/collegeScorecard";
 import {
@@ -22,7 +20,7 @@ import {
   getUserCollegeList,
 } from "../../services/colleges";
 import { useAuth } from "../../hooks/useAuth";
-import type { College, CollegeCategory } from "../../types";
+import type { CollegeCategory } from "../../types";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
 import { Badge } from "../ui/Badge";
@@ -41,11 +39,7 @@ export function CollegeDetailsPage() {
   const fromMyLists = state?.from === "my-lists";
 
   // Fetch college details - try database first, then API
-  const {
-    data: college,
-    isLoading,
-    error,
-  } = useQuery({
+  const { data: college, isLoading } = useQuery({
     queryKey: ["collegeDetails", collegeId],
     queryFn: async () => {
       if (!collegeId) return null;
@@ -54,7 +48,7 @@ export function CollegeDetailsPage() {
       try {
         const dbCollege = await getCollegeFromDB(collegeId);
         if (dbCollege) return dbCollege;
-      } catch (error) {
+      } catch {
         console.log("College not found in database, trying API...");
       }
 
@@ -66,8 +60,8 @@ export function CollegeDetailsPage() {
           await upsertCollege(apiCollege);
           return apiCollege;
         }
-      } catch (error) {
-        console.error("Error fetching from API:", error);
+      } catch {
+        console.error("Error fetching from API");
       }
 
       return null;
@@ -78,7 +72,7 @@ export function CollegeDetailsPage() {
   // Check if this college is already in the user's list
   const { data: userCollegeList } = useQuery({
     queryKey: ["userCollegeList", user?.id],
-    queryFn: () => getUserCollegeList(user?.id!),
+    queryFn: () => getUserCollegeList(user?.id ?? ""),
     enabled: !!user,
   });
 
@@ -116,19 +110,6 @@ export function CollegeDetailsPage() {
     "History",
     "Economics",
     "Physics",
-  ];
-
-  const popularCourses = [
-    "Introduction to Computer Science",
-    "Calculus I",
-    "Principles of Economics",
-    "General Psychology",
-    "English Composition",
-    "Introduction to Biology",
-    "World History",
-    "Business Statistics",
-    "Organic Chemistry",
-    "Public Speaking",
   ];
 
   // Mock application deadlines (in a real app, this would come from the college's website or database)
@@ -174,7 +155,7 @@ export function CollegeDetailsPage() {
     );
   }
 
-  if (error || !college) {
+  if (!college) {
     return (
       <Card className="text-center py-12">
         <AcademicCapIcon className="h-12 w-12 text-text-tertiary mx-auto mb-4" />

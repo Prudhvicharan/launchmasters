@@ -73,26 +73,3 @@ export function Toast({
     </div>
   );
 }
-
-// Toast Provider Hook (optional)
-export function useToast() {
-  const [toasts, setToasts] = useState<
-    Array<{ id: string; props: ToastProps }>
-  >([]);
-
-  const showToast = (props: Omit<ToastProps, "onClose">) => {
-    const id = Math.random().toString(36);
-    setToasts((prev) => [
-      ...prev,
-      {
-        id,
-        props: {
-          ...props,
-          onClose: () => setToasts((prev) => prev.filter((t) => t.id !== id)),
-        },
-      },
-    ]);
-  };
-
-  return { toasts, showToast };
-}

@@ -13,11 +13,7 @@ import { Button } from "../ui/Button";
 import { Toast } from "../ui/Toast";
 import type { LoginFormData } from "../../types";
 
-interface LoginFormProps {
-  onSwitchMode: () => void;
-}
-
-export const LoginForm = ({ onSwitchMode }: LoginFormProps) => {
+export const LoginForm = () => {
   const { signIn } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: "error" } | null>(

@@ -32,7 +32,6 @@ export function useAuth() {
       return;
     }
 
-    console.log("Fetching profile for user:", user.id);
     try {
       const { data: profile, error } = await supabase
         .from("profiles")
@@ -41,7 +40,6 @@ export function useAuth() {
         .single();
 
       if (error && error.code !== "PGRST116") {
-        // PGRST116 means no rows found
         throw error;
       }
 
@@ -49,7 +47,6 @@ export function useAuth() {
         data: { session },
       } = await supabase.auth.getSession();
 
-      console.log("Auth state updated with profile:", profile);
       setAuthState({
         user: profile,
         session,
@@ -58,7 +55,6 @@ export function useAuth() {
         isAuthenticated: !!session,
       });
     } catch (error) {
-      console.error("Profile fetch error:", error);
       setAuthState({
         user: null,
         session: null,
@@ -84,8 +80,7 @@ export function useAuth() {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log("Auth state changed:", event);
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       fetchUserProfile(session?.user ?? null);
     });
 
@@ -111,8 +106,6 @@ export function useAuth() {
       return { error: error.message, requiresConfirmation: false };
     }
 
-    // If there's a user but no session, it means they need to confirm their email.
-    // If there is a session, onAuthStateChange will handle it.
     const requiresConfirmation = !!data.user && !data.session;
     setAuthState((prev) => ({ ...prev, loading: false }));
     return { error: null, requiresConfirmation };
@@ -132,7 +125,6 @@ export function useAuth() {
       }));
       return { error: error.message };
     }
-    // onAuthStateChange will handle success and set loading to false
     return { error: null };
   };
 
@@ -147,7 +139,6 @@ export function useAuth() {
       }));
       return { error: error.message };
     }
-    // onAuthStateChange will clear user and session
     return { error: null };
   };
 

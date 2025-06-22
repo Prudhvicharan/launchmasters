@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-import type { College, CollegeCategory } from "../types";
+import type { College, CollegeCategory, UserCollege } from "../types";
 
 /**
  * Caches a college's data in the 'colleges' table.
@@ -80,13 +80,26 @@ export const addCollegeToList = async (
   return data;
 };
 
+// Type for raw data returned from Supabase join query
+interface RawUserCollegeData {
+  id: string;
+  user_id: string;
+  college_id: string;
+  category: CollegeCategory;
+  notes: string | null;
+  created_at: string;
+  college: College | College[];
+}
+
 /**
  * Fetches the user's saved college list, with full college details.
  *
  * @param userId - The ID of the user whose list to fetch.
  * @returns A promise that resolves to an array of UserCollege objects.
  */
-export const getUserCollegeList = async (userId: string) => {
+export const getUserCollegeList = async (
+  userId: string
+): Promise<UserCollege[]> => {
   if (!userId) {
     throw new Error("User ID is required to fetch college list.");
   }
@@ -96,10 +109,25 @@ export const getUserCollegeList = async (userId: string) => {
     .select(
       `
       id,
+      user_id,
+      college_id,
       category,
       notes,
+      created_at,
       college:colleges!inner (
-        *
+        id,
+        name,
+        city,
+        state,
+        website,
+        admission_rate,
+        tuition_in_state,
+        tuition_out_state,
+        enrollment,
+        sat_avg,
+        act_avg,
+        created_at,
+        updated_at
       )
     `
     )
@@ -110,10 +138,15 @@ export const getUserCollegeList = async (userId: string) => {
     throw error;
   }
 
-  // Handle cases where Supabase returns an array for a joined one-to-one relation
+  // Transform the data to match UserCollege interface
   if (data) {
-    return data.map((item: any) => ({
-      ...item,
+    return data.map((item: RawUserCollegeData) => ({
+      id: item.id,
+      user_id: item.user_id,
+      college_id: item.college_id,
+      category: item.category,
+      notes: item.notes,
+      created_at: item.created_at,
       college: Array.isArray(item.college) ? item.college[0] : item.college,
     }));
   }

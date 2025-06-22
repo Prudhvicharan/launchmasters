@@ -6,7 +6,6 @@ import {
   CalendarIcon,
   PlusIcon,
   AcademicCapIcon,
-  ClockIcon,
   ArrowRightIcon,
 } from "@heroicons/react/24/outline";
 import { getUserCollegeList } from "../../services/colleges";
@@ -15,8 +14,7 @@ import { Card } from "../ui/Card";
 import { Button } from "../ui/Button";
 import { Badge } from "../ui/Badge";
 import { Avatar } from "../ui/Avatar";
-import { ProgressBar } from "../ui/ProgressBar";
-import { LoadingSpinner, Skeleton } from "../ui/LoadingSpinner";
+import { Skeleton } from "../ui/LoadingSpinner";
 import type { UserCollege, College } from "../../types";
 
 type UserCollegeWithCollege = UserCollege & {
@@ -28,7 +26,7 @@ export function DashboardPage() {
 
   const { data: collegeList, isLoading } = useQuery({
     queryKey: ["userCollegeList", user?.id],
-    queryFn: () => getUserCollegeList(user?.id!),
+    queryFn: () => getUserCollegeList(user?.id ?? ""),
     enabled: !!user?.id,
   }) as { data: UserCollegeWithCollege[] | undefined; isLoading: boolean };
 

@@ -10,7 +10,6 @@ import {
   ArrowRightIcon,
   PlusIcon,
   CheckIcon,
-  ExclamationCircleIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
 import { upsertCollege, addCollegeToList } from "../../services/colleges";
@@ -20,7 +19,7 @@ import { Button } from "../ui/Button";
 interface CollegeCardProps {
   college: Partial<College>;
   isAdded?: boolean;
-  linkState?: any;
+  linkState?: Record<string, unknown>;
 }
 
 const formatValue = (
