@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-secondary-50 text-secondary-700 transition-colors duration-300;
+  }
+  
+  /* Dark mode body */
+  .dark body {
+    @apply bg-secondary-900 text-secondary-300;
+  }
+  
+  /* Smooth transitions for theme switching */
+  * {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+  
+  .dark .btn-primary {
+    @apply ring-offset-secondary-950 hover:shadow-lg hover:shadow-primary-500/25;
+  }
+  
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-gray-700 font-medium py-2 px-4 rounded-lg border border-gray-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+  
+  .dark .btn-secondary {
+    @apply bg-secondary-800 hover:bg-secondary-700 text-gray-200 border-secondary-600 ring-offset-secondary-950;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6 transition-all duration-200;
+  }
+  
+  .dark .card {
+    @apply bg-secondary-800 border-secondary-700 shadow-lg;
+  }
+  
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
+  }
+  
+  .dark .input-field {
+    @apply bg-secondary-900 border-secondary-600 text-gray-100 focus:ring-primary-400 placeholder-gray-400;
+  }
+  
+  /* Glass effect for dark mode using your existing glass utilities */
+  .glass-enhanced {
+    @apply glass backdrop-blur-xl;
+  }
+  
+  .dark .glass-enhanced {
+    @apply glass-dark;
+  }
+  
+  /* Glow effects for dark theme */
+  .glow-primary {
+    @apply shadow-glow;
+  }
+  
+  /* Hide the default browser "x" in search inputs */
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  .btn-primary-ghost {
+      @apply bg-transparent text-primary-600 dark:text-primary-400 
+             hover:bg-primary-50 dark:hover:bg-primary-900/50 
+             font-semibold py-2 px-4 rounded-lg transition-all 
+             duration-200 focus:outline-none focus:ring-2 
+             focus:ring-primary-500/50 dark:focus:ring-offset-secondary-900;
+  }
+}
