@@ -1,0 +1,111 @@
+# LaunchMasters - College Application Management System
+
+## Project Overview
+LaunchMasters is a web application that helps students manage their college application journey from discovery to decision. Students can search colleges, track deadlines, monitor application progress, and receive smart reminders.
+
+## Technology Stack
+- **Frontend**: React 18 + TypeScript + Vite + Tailwind CSS
+- **Backend**: Supabase (PostgreSQL + Authentication + Real-time)
+- **External API**: College Scorecard API for live college data
+- **Deployment**: Vercel (Frontend) + Supabase (Backend)
+
+## External API Integration
+- **College Scorecard API Key**: `3wAuDRWXKx4TDcS1QLoKAjEkUo6csct8ZPF4xNZX`
+- **Base URL**: `https://api.data.gov/ed/collegescorecard/v1/schools`
+- **Purpose**: Fetch live data for 7,000+ US colleges with search and filtering
+
+## Core Features to Build
+1. **College Discovery** - Search and filter colleges using College Scorecard API
+2. **Personal College Lists** - Save colleges in reach/target/safety categories
+3. **Deadline Tracking** - Track application deadlines with reminders
+4. **Application Progress** - Monitor application status and completion
+5. **Smart Notifications** - Email and in-app deadline reminders
+6. **Analytics Dashboard** - Progress visualization and insights
+7. **User Authentication** - Secure user accounts with Supabase Auth
+
+## Database Schema (Supabase)
+```sql
+-- Core tables needed:
+profiles (user data)
+colleges (cached college data from API)
+user_colleges (user's college lists with categories)
+deadlines (application deadlines)
+applications (application status tracking)
+notifications (user notifications)
+```
+
+## Project Structure
+```
+src/
+├── components/
+│   ├── auth/           # Login, SignUp, AuthGuard
+│   ├── colleges/       # Search, Cards, Details, Filters
+│   ├── dashboard/      # Overview, Stats, Quick Actions
+│   ├── lists/          # My Colleges, Categories
+│   ├── deadlines/      # Calendar, Forms, Reminders
+│   ├── applications/   # Progress, Status Tracking
+│   └── ui/             # Reusable components
+├── hooks/              # Custom React hooks
+├── services/           # API integrations (Supabase, College Scorecard)
+├── types/              # TypeScript definitions
+└── utils/              # Helper functions
+```
+
+## Key Dependencies Needed
+```json
+{
+  "@supabase/supabase-js": "^2.x",
+  "@tanstack/react-query": "^5.x",
+  "react-router-dom": "^6.x",
+  "react-hook-form": "^7.x",
+  "@headlessui/react": "^1.x",
+  "@heroicons/react": "^2.x",
+  "chart.js": "^4.x",
+  "react-chartjs-2": "^5.x",
+  "date-fns": "^3.x",
+  "clsx": "^2.x"
+}
+```
+
+## Coding Standards
+- Use TypeScript for all code
+- Functional components with React hooks
+- Tailwind CSS for all styling
+- React Query for server state management
+- Proper error handling and loading states
+- Mobile-first responsive design
+- Supabase Row Level Security (RLS) for data protection
+
+## Environment Variables
+```env
+REACT_APP_SUPABASE_URL=your_supabase_project_url
+REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
+REACT_APP_COLLEGE_SCORECARD_API_KEY=3wAuDRWXKx4TDcS1QLoKAjEkUo6csct8ZPF4xNZX
+```
+
+## Development Priorities
+1. **Setup** - Project structure, Supabase config, Tailwind setup
+2. **Authentication** - Sign up, login, user profiles with Supabase Auth
+3. **College Search** - Integrate College Scorecard API with caching
+4. **College Lists** - Personal college management with categories
+5. **Deadlines** - Deadline tracking with calendar view
+6. **Applications** - Progress tracking and status updates
+7. **Dashboard** - Analytics and progress visualization
+8. **Notifications** - Reminder system for deadlines
+
+## Key Instructions for Cursor
+- Always use TypeScript with proper type definitions
+- Implement proper error boundaries and loading states
+- Use Supabase for all backend operations (auth, database, real-time)
+- Cache College Scorecard API results in Supabase for performance
+- Create reusable components with consistent styling
+- Implement responsive design for mobile and desktop
+- Add comprehensive error handling for API calls
+- Use React Query for efficient data fetching and caching
+
+## Success Criteria
+- College search results load in < 500ms
+- Real-time updates work across all features
+- Mobile-responsive on all screen sizes
+- Secure data handling with RLS
+- Intuitive user experience requiring no training
