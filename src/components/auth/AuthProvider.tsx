@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+<<<<<<< HEAD
 import { createContext, useContext } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import type { User } from "../../types";
@@ -25,6 +26,10 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+=======
+import { useAuth } from "../../hooks/useAuth";
+import { AuthContext } from "../../contexts/AuthContext";
+>>>>>>> main
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -35,6 +40,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 }
+<<<<<<< HEAD
 
 export function useAuthContext() {
   const context = useContext(AuthContext);
@@ -43,3 +49,5 @@ export function useAuthContext() {
   }
   return context;
 }
+=======
+>>>>>>> main

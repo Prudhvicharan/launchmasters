@@ -208,7 +208,11 @@ export type LoadingState = "idle" | "loading" | "success" | "error";
 export interface ErrorState {
   message: string;
   code?: string;
+<<<<<<< HEAD
   details?: any;
+=======
+  details?: Record<string, unknown>;
+>>>>>>> main
 }
 
 // Route types

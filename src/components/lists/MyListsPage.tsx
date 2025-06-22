@@ -199,7 +199,11 @@ export function MyListsPage() {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
+<<<<<<< HEAD
                 onClick={() => setActiveTab(tab.id as any)}
+=======
+                onClick={() => setActiveTab(tab.id)}
+>>>>>>> main
                 className={`${
                   activeTab === tab.id
                     ? "border-primary text-primary"

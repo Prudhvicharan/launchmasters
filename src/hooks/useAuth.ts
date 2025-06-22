@@ -32,7 +32,10 @@ export function useAuth() {
       return;
     }
 
+<<<<<<< HEAD
     console.log("Fetching profile for user:", user.id);
+=======
+>>>>>>> main
     try {
       const { data: profile, error } = await supabase
         .from("profiles")
@@ -41,7 +44,10 @@ export function useAuth() {
         .single();
 
       if (error && error.code !== "PGRST116") {
+<<<<<<< HEAD
         // PGRST116 means no rows found
+=======
+>>>>>>> main
         throw error;
       }
 
@@ -49,7 +55,10 @@ export function useAuth() {
         data: { session },
       } = await supabase.auth.getSession();
 
+<<<<<<< HEAD
       console.log("Auth state updated with profile:", profile);
+=======
+>>>>>>> main
       setAuthState({
         user: profile,
         session,
@@ -58,7 +67,10 @@ export function useAuth() {
         isAuthenticated: !!session,
       });
     } catch (error) {
+<<<<<<< HEAD
       console.error("Profile fetch error:", error);
+=======
+>>>>>>> main
       setAuthState({
         user: null,
         session: null,
@@ -84,8 +96,12 @@ export function useAuth() {
 
     const {
       data: { subscription },
+<<<<<<< HEAD
     } = supabase.auth.onAuthStateChange((event, session) => {
       console.log("Auth state changed:", event);
+=======
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+>>>>>>> main
       fetchUserProfile(session?.user ?? null);
     });
 
@@ -111,8 +127,11 @@ export function useAuth() {
       return { error: error.message, requiresConfirmation: false };
     }
 
+<<<<<<< HEAD
     // If there's a user but no session, it means they need to confirm their email.
     // If there is a session, onAuthStateChange will handle it.
+=======
+>>>>>>> main
     const requiresConfirmation = !!data.user && !data.session;
     setAuthState((prev) => ({ ...prev, loading: false }));
     return { error: null, requiresConfirmation };
@@ -132,7 +151,10 @@ export function useAuth() {
       }));
       return { error: error.message };
     }
+<<<<<<< HEAD
     // onAuthStateChange will handle success and set loading to false
+=======
+>>>>>>> main
     return { error: null };
   };
 
@@ -147,7 +169,10 @@ export function useAuth() {
       }));
       return { error: error.message };
     }
+<<<<<<< HEAD
     // onAuthStateChange will clear user and session
+=======
+>>>>>>> main
     return { error: null };
   };
 

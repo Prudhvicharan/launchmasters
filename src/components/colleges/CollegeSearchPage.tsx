@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+>>>>>>> main
 import { useQuery } from "@tanstack/react-query";
 import { searchColleges } from "../../services/collegeScorecard";
 import { getUserCollegeList } from "../../services/colleges";
@@ -19,7 +22,11 @@ export function CollegeSearchPage() {
   const query = searchParams.get("q") || "";
   const { user } = useAuth();
 
+<<<<<<< HEAD
   const { data, isLoading, error, isFetching } = useQuery({
+=======
+  const { data, isLoading, error } = useQuery({
+>>>>>>> main
     queryKey: ["colleges", query],
     queryFn: () => searchColleges({ query }),
     enabled: !!query.trim(),
@@ -27,7 +34,11 @@ export function CollegeSearchPage() {
 
   const { data: userCollegeList } = useQuery({
     queryKey: ["userCollegeList", user?.id],
+<<<<<<< HEAD
     queryFn: () => getUserCollegeList(user?.id!),
+=======
+    queryFn: () => getUserCollegeList(user?.id ?? ""),
+>>>>>>> main
     enabled: !!user,
   });
 

@@ -73,6 +73,7 @@ export function Toast({
     </div>
   );
 }
+<<<<<<< HEAD
 
 // Toast Provider Hook (optional)
 export function useToast() {
@@ -96,3 +97,5 @@ export function useToast() {
 
   return { toasts, showToast };
 }
+=======
+>>>>>>> main

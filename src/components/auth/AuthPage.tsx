@@ -3,16 +3,25 @@ import { Navigate, useLocation } from "react-router-dom";
 import { LoginForm } from "./LoginForm";
 import { SignUpForm } from "./SignUpForm";
 import { AuthLayout } from "./AuthLayout";
+<<<<<<< HEAD
 import { useAuth } from "../../hooks/useAuth";
 import { Card } from "../ui/Card";
 import { Button } from "../ui/Button";
+=======
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { Card } from "../ui/Card";
+>>>>>>> main
 import { AcademicCapIcon } from "@heroicons/react/24/outline";
 
 type AuthMode = "login" | "signup";
 
 export function AuthPage() {
   const [mode, setMode] = useState<AuthMode>("login");
+<<<<<<< HEAD
   const { user, loading } = useAuth();
+=======
+  const { user, loading } = useAuthContext();
+>>>>>>> main
   const location = useLocation();
 
   // If user is already authenticated, redirect to intended destination or dashboard
@@ -64,7 +73,11 @@ export function AuthPage() {
 
         {/* Form */}
         {mode === "login" ? (
+<<<<<<< HEAD
           <LoginForm onSwitchMode={() => setMode("signup")} />
+=======
+          <LoginForm />
+>>>>>>> main
         ) : (
           <SignUpForm onSwitchMode={() => setMode("login")} />
         )}

@@ -7,12 +7,18 @@ import {
   MapPinIcon,
   GlobeAltIcon,
   CurrencyDollarIcon,
+<<<<<<< HEAD
   UsersIcon,
+=======
+>>>>>>> main
   PlusIcon,
   CheckIcon,
   CalendarIcon,
   ChartBarIcon,
+<<<<<<< HEAD
   BuildingOfficeIcon,
+=======
+>>>>>>> main
 } from "@heroicons/react/24/outline";
 import { getCollegeById as getCollegeFromAPI } from "../../services/collegeScorecard";
 import {
@@ -22,7 +28,11 @@ import {
   getUserCollegeList,
 } from "../../services/colleges";
 import { useAuth } from "../../hooks/useAuth";
+<<<<<<< HEAD
 import type { College, CollegeCategory } from "../../types";
+=======
+import type { CollegeCategory } from "../../types";
+>>>>>>> main
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
 import { Badge } from "../ui/Badge";
@@ -41,11 +51,15 @@ export function CollegeDetailsPage() {
   const fromMyLists = state?.from === "my-lists";
 
   // Fetch college details - try database first, then API
+<<<<<<< HEAD
   const {
     data: college,
     isLoading,
     error,
   } = useQuery({
+=======
+  const { data: college, isLoading } = useQuery({
+>>>>>>> main
     queryKey: ["collegeDetails", collegeId],
     queryFn: async () => {
       if (!collegeId) return null;
@@ -54,7 +68,11 @@ export function CollegeDetailsPage() {
       try {
         const dbCollege = await getCollegeFromDB(collegeId);
         if (dbCollege) return dbCollege;
+<<<<<<< HEAD
       } catch (error) {
+=======
+      } catch {
+>>>>>>> main
         console.log("College not found in database, trying API...");
       }
 
@@ -66,8 +84,13 @@ export function CollegeDetailsPage() {
           await upsertCollege(apiCollege);
           return apiCollege;
         }
+<<<<<<< HEAD
       } catch (error) {
         console.error("Error fetching from API:", error);
+=======
+      } catch {
+        console.error("Error fetching from API");
+>>>>>>> main
       }
 
       return null;
@@ -78,7 +101,11 @@ export function CollegeDetailsPage() {
   // Check if this college is already in the user's list
   const { data: userCollegeList } = useQuery({
     queryKey: ["userCollegeList", user?.id],
+<<<<<<< HEAD
     queryFn: () => getUserCollegeList(user?.id!),
+=======
+    queryFn: () => getUserCollegeList(user?.id ?? ""),
+>>>>>>> main
     enabled: !!user,
   });
 
@@ -118,6 +145,7 @@ export function CollegeDetailsPage() {
     "Physics",
   ];
 
+<<<<<<< HEAD
   const popularCourses = [
     "Introduction to Computer Science",
     "Calculus I",
@@ -131,6 +159,8 @@ export function CollegeDetailsPage() {
     "Public Speaking",
   ];
 
+=======
+>>>>>>> main
   // Mock application deadlines (in a real app, this would come from the college's website or database)
   const applicationDeadlines = [
     {
@@ -174,7 +204,11 @@ export function CollegeDetailsPage() {
     );
   }
 
+<<<<<<< HEAD
   if (error || !college) {
+=======
+  if (!college) {
+>>>>>>> main
     return (
       <Card className="text-center py-12">
         <AcademicCapIcon className="h-12 w-12 text-text-tertiary mx-auto mb-4" />

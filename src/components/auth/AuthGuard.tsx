@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import type { ReactNode } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuthContext } from "./AuthProvider";
@@ -6,6 +7,10 @@ interface AuthGuardProps {
   children: ReactNode;
   fallback?: ReactNode;
 }
+=======
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
+>>>>>>> main
 
 export const AuthGuard = () => {
   const { isAuthenticated, loading } = useAuthContext();
@@ -21,11 +26,14 @@ export const AuthGuard = () => {
   return <Outlet />;
 };
 
+<<<<<<< HEAD
 interface PublicRouteGuardProps {
   children: ReactNode;
   redirectTo?: string;
 }
 
+=======
+>>>>>>> main
 export const PublicRouteGuard = () => {
   const { isAuthenticated, loading } = useAuthContext();
 

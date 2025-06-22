@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { useTheme } from "../../contexts/ThemeContext";
+=======
+import { useTheme } from "../../hooks/useTheme";
+import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
+>>>>>>> main
 
 interface ThemeToggleProps {
   className?: string;

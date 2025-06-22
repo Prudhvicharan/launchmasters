@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   createContext,
   useContext,
@@ -16,6 +17,13 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+=======
+import { useEffect, useState, type ReactNode } from "react";
+import { ThemeContext } from "./ThemeContextDefinition";
+
+type Theme = "light" | "dark";
+
+>>>>>>> main
 interface ThemeProviderProps {
   children: ReactNode;
   defaultTheme?: Theme;
@@ -70,6 +78,7 @@ export function ThemeProvider({
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 }
+<<<<<<< HEAD
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
@@ -78,3 +87,5 @@ export const useTheme = () => {
   }
   return context;
 };
+=======
+>>>>>>> main

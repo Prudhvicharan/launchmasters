@@ -135,7 +135,11 @@ export function getDeadlineUrgency(
 /**
  * Debounce function for search inputs
  */
+<<<<<<< HEAD
 export function debounce<T extends (...args: any[]) => any>(
+=======
+export function debounce<T extends (...args: unknown[]) => unknown>(
+>>>>>>> main
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {

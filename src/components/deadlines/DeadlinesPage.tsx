@@ -4,10 +4,14 @@ import {
   CalendarIcon,
   PlusIcon,
   ClockIcon,
+<<<<<<< HEAD
   ExclamationTriangleIcon,
   CheckCircleIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+=======
+  CheckCircleIcon,
+>>>>>>> main
   ListBulletIcon,
   Squares2X2Icon,
 } from "@heroicons/react/24/outline";
@@ -15,9 +19,13 @@ import { useAuth } from "../../hooks/useAuth";
 import { Card } from "../ui/Card";
 import { Button } from "../ui/Button";
 import { Badge } from "../ui/Badge";
+<<<<<<< HEAD
 import { Skeleton } from "../ui/LoadingSpinner";
 import { Tabs } from "../ui/Tabs";
 import type { DeadlineType, UserCollege } from "../../types";
+=======
+import type { DeadlineType } from "../../types";
+>>>>>>> main
 import { AddDeadlineModal } from "./AddDeadlineModal";
 import { getUserCollegeList } from "../../services/colleges";
 
@@ -67,9 +75,15 @@ export function DeadlinesPage() {
   const [view, setView] = useState<"list" | "calendar">("list");
 
   // This is for the AddDeadlineModal, real deadline fetching will be implemented later
+<<<<<<< HEAD
   const { data: collegeList, isLoading: isLoadingColleges } = useQuery({
     queryKey: ["userCollegeList", user?.id],
     queryFn: () => getUserCollegeList(user?.id!),
+=======
+  const { data: collegeList } = useQuery({
+    queryKey: ["userCollegeList", user?.id],
+    queryFn: () => getUserCollegeList(user?.id ?? ""),
+>>>>>>> main
     enabled: !!user?.id,
   });
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+<<<<<<< HEAD
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../../hooks/useAuth";
 import { Modal } from "../ui/Modal";
@@ -15,11 +16,21 @@ interface CollegeListItem {
     name: string;
   };
 }
+=======
+import { Modal } from "../ui/Modal";
+import { Button } from "../ui/Button";
+import { Badge } from "../ui/Badge";
+import type { DeadlineType, UserCollege } from "../../types";
+>>>>>>> main
 
 interface AddDeadlineModalProps {
   isOpen: boolean;
   onClose: () => void;
+<<<<<<< HEAD
   collegeList: CollegeListItem[];
+=======
+  collegeList: UserCollege[];
+>>>>>>> main
 }
 
 export function AddDeadlineModal({
@@ -27,7 +38,10 @@ export function AddDeadlineModal({
   onClose,
   collegeList,
 }: AddDeadlineModalProps) {
+<<<<<<< HEAD
   const { user } = useAuth();
+=======
+>>>>>>> main
   const queryClient = useQueryClient();
   const [formData, setFormData] = useState({
     college_id: "",

@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../hooks/useAuth";
 import { getInitials } from "../../utils";
+<<<<<<< HEAD
 import type { User } from "../../types";
+=======
+>>>>>>> main
 
 interface UserProfileFormData {
   full_name: string;
