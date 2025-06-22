@@ -26,8 +26,11 @@ export function CollegeSearchPage() {
 
   const { data: userCollegeList } = useQuery({
     queryKey: ["userCollegeList", user?.id],
-    queryFn: () => getUserCollegeList(user?.id ?? ""),
-    enabled: !!user,
+    queryFn: () => {
+      if (!user?.id) throw new Error("User ID is required");
+      return getUserCollegeList(user.id!);
+    },
+    enabled: !!user?.id,
   });
 
   const userCollegeIds = new Set(userCollegeList?.map((c) => c.college_id));
@@ -128,9 +131,11 @@ export function CollegeSearchPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {data.results.map((college) => (
                   <CollegeCard
-                    key={college.id}
+                    key={college.id || `college-${Math.random()}`}
                     college={college}
-                    isAdded={userCollegeIds.has(college.id)}
+                    isAdded={
+                      college.id ? userCollegeIds.has(college.id) : false
+                    }
                   />
                 ))}
               </div>

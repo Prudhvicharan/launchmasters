@@ -8,7 +8,7 @@ export { Modal } from "./Modal";
 export { Badge } from "./Badge";
 export { Avatar } from "./Avatar";
 export { LoadingSpinner, Skeleton } from "./LoadingSpinner";
-export { Toast, useToast } from "./Toast";
+export { Toast } from "./Toast";
 
 // Interactive Components
 export { SearchBar } from "./SearchBar";
